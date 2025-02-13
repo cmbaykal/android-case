@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".App"
         android:allowBackup="true"
@@ -14,10 +16,10 @@
         android:theme="@style/Theme.NesineAndroidCase"
         tools:targetApi="31">
         <activity
-            android:name=".ui.views.MainActivityView"
+            android:name=".ui.views.MainViewActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.compose.MainActivityCompose"
+            android:name=".ui.compose.MainComposeActivity"
             android:exported="false" />
         <activity
             android:name=".LaunchActivity"

@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.kotlin.compose.plugin)
     alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.kotlin.ksp)
+    alias(libs.plugins.navigation.safeargs)
     alias(libs.plugins.dagger.hilt)
 }
 
@@ -22,8 +23,13 @@ android {
     }
 
     buildTypes {
-        release {
+        debug {
+            buildConfigField("String", "BASE_URL", "\"${properties["BASE_URL"] as String}\"")
             isMinifyEnabled = false
+        }
+        release {
+            buildConfigField("String", "BASE_URL", "\"${properties["BASE_URL"] as String}\"")
+            isMinifyEnabled = true
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
@@ -47,6 +53,7 @@ android {
 dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.kotlinx.coroutines)
+    implementation(libs.kotlinx.serialization)
 
     // Legacy UI
     implementation(libs.material)
@@ -77,6 +84,9 @@ dependencies {
     // Network
     implementation(libs.retrofit)
     implementation(libs.retrofit.serialization)
+    implementation(libs.okhttp)
+    debugImplementation(libs.okhttp.loggingInterceptor)
+    implementation(libs.coil.network.okhttp)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

@@ -11,8 +11,9 @@ class PostDto(
     val body: String
 )
 
-fun PostDto.toDomain() = PostModel(
+fun PostDto.toDomain(index: Int) = PostModel(
     id = id,
     title = title,
-    body = body
+    body = body,
+    imgUrl = "https://picsum.photos/300/300?random=$index&grayscale"
 )

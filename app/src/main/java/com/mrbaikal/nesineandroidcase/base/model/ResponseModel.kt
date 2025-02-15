@@ -30,3 +30,12 @@ inline fun <T> ResponseModel<T>.onError(action: (ErrorModel) -> Unit): ResponseM
     error?.let(action)
     return this
 }
+
+suspend inline fun <T> ResponseModel<T>.onSuccess(
+    crossinline action: suspend (T) -> Unit
+): ResponseModel<T> {
+    if (this.error == null && this.data != null) {
+        action.invoke(this.data)
+    }
+    return this
+}

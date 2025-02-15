@@ -30,8 +30,7 @@ class PostAdapter(
 
     inner class PostViewHolder(private val binding: ItemviewPostBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: PostModel, position: Int) {
-            val imgUrl = "https://picsum.photos/300/300?random=$position&grayscale"
-            binding.imagePost.load(imgUrl) {
+            binding.imagePost.load(item.imgUrl) {
                 crossfade(true)
                 transformations(CircleCropTransformation())
             }

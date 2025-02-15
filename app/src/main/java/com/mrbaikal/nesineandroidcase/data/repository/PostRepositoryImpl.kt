@@ -13,6 +13,6 @@ class PostRepositoryImpl @Inject constructor(
 ) : PostRepository {
 
     override suspend fun getPosts(): ResponseModel<List<PostModel>> {
-        return service.getPosts().responseMap { list -> list.map { it.toDomain() } }
+        return service.getPosts().responseMap { list -> list.mapIndexed { index, item -> item.toDomain(index) } }
     }
 }

@@ -5,13 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import coil3.load
 import coil3.request.crossfade
 import coil3.request.transformations
 import coil3.transform.CircleCropTransformation
+import com.mrbaikal.nesineandroidcase.base.fragment.BaseFragment
 import com.mrbaikal.nesineandroidcase.databinding.FragmentDetailBinding
 import com.mrbaikal.nesineandroidcase.ext.hideKeyboard
 import com.mrbaikal.nesineandroidcase.ext.showKeyboard
@@ -19,10 +19,10 @@ import com.mrbaikal.nesineandroidcase.ui.views.list.MainViewViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class DetailFragment : Fragment() {
+class DetailFragment : BaseFragment<DetailViewModel>() {
 
     private val activityViewModel: MainViewViewModel by activityViewModels()
-    private val viewModel: DetailViewModel by viewModels()
+    override val viewModel: DetailViewModel by viewModels()
     private var _binding: FragmentDetailBinding? = null
     private val binding get() = _binding!!
 

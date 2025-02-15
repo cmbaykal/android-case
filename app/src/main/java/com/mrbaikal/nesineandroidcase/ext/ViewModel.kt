@@ -16,7 +16,7 @@ suspend inline fun <T> ViewModel.execute(
 ): ResponseModel<T> {
     try {
         showProgress(true)
-        return call.invoke().onError { showMessage(it.message) }
+        return call.invoke()
     } catch (e: Exception) {
         val message = e.message ?: "Bir hata oluştu"
         showMessage(message)

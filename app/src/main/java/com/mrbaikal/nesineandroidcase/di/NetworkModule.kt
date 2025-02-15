@@ -1,10 +1,13 @@
 package com.mrbaikal.nesineandroidcase.di
 
+import android.content.Context
 import com.mrbaikal.nesineandroidcase.BuildConfig
 import com.mrbaikal.nesineandroidcase.base.network.ResponseCallAdapter
+import com.mrbaikal.nesineandroidcase.ext.isNetworkAvailable
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import dagger.multibindings.IntoSet
 import kotlinx.serialization.json.Json
@@ -14,6 +17,8 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.kotlinx.serialization.asConverterFactory
+import java.io.IOException
+import kotlin.time.Duration.Companion.seconds
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -37,6 +42,19 @@ object NetworkModule {
     fun provideLoggingInterceptor(): Interceptor {
         return HttpLoggingInterceptor().apply {
             level = HttpLoggingInterceptor.Level.BODY
+        }
+    }
+
+    @Provides
+    @IntoSet
+    fun provideNetworkInterceptor(
+        @ApplicationContext context: Context
+    ): Interceptor {
+        return Interceptor {
+            if (!context.isNetworkAvailable()) {
+                throw IOException("İnternet bağlantısı bulunamadı")
+            }
+            it.proceed(it.request())
         }
     }
 

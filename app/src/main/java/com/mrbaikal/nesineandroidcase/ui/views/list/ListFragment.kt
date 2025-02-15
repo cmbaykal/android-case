@@ -8,7 +8,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -16,20 +15,21 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.mrbaikal.nesineandroidcase.R
+import com.mrbaikal.nesineandroidcase.base.fragment.BaseFragment
 import com.mrbaikal.nesineandroidcase.databinding.FragmentListBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class ListFragment : Fragment() {
+class ListFragment : BaseFragment<ListViewModel>() {
 
     private val activityViewModel: MainViewViewModel by activityViewModels()
-    private val viewModel: ListViewModel by viewModels()
+    override val viewModel: ListViewModel by viewModels()
     private var _binding: FragmentListBinding? = null
     private val binding get() = _binding!!
 
     private val postAdapter: PostAdapter by lazy {
         PostAdapter {
-            activityViewModel.setPostModel(it )
+            activityViewModel.setPostModel(it)
             findNavController().navigate(ListFragmentDirections.listToDetail())
         }
     }
@@ -116,13 +116,15 @@ class ListFragment : Fragment() {
                 }
             }).attachToRecyclerView(this)
         }
-        binding.swipeRefreshLayout.setOnRefreshListener { viewModel.getPosts() }
+        binding.swipeRefreshLayout.setOnRefreshListener {
+            viewModel.getPosts()
+            binding.swipeRefreshLayout.isRefreshing = false
+        }
     }
 
     private fun setupObservers() {
         viewModel.postList.observe(viewLifecycleOwner) {
             postAdapter.submitList(it)
-            binding.swipeRefreshLayout.isRefreshing = false
         }
         activityViewModel.selectedPost.observe(viewLifecycleOwner) {
             viewModel.updateItem(it)

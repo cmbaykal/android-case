@@ -29,38 +29,22 @@ class ResponseCall<T : Any>(
                             Response.success(
                                 ResponseModel(
                                     data = null as T,
-                                    error = ErrorModel("Response body is null")
+                                    error = ErrorModel("Sunucudan boş yanıt alındı")
                                 )
                             )
                         )
                     }
                 } else {
-                    callback.onResponse(
+                    val errorBody = response.errorBody()?.string()
+                    callback.onFailure(
                         this@ResponseCall,
-                        Response.success(
-                            ResponseModel(
-                                data = null as T,
-                                error = ErrorModel(response.message() ?: "Unknown error occurred")
-                            )
-                        )
+                        IOException(errorBody ?: response.message() ?: "Bilinmeyen bir hata oluştu")
                     )
                 }
             }
 
             override fun onFailure(call: Call<T>, t: Throwable) {
-                val errorMessage = when (t) {
-                    is IOException -> "No internet connection"
-                    else -> t.message ?: "Unknown error occurred"
-                }
-                callback.onResponse(
-                    this@ResponseCall,
-                    Response.success(
-                        ResponseModel(
-                            data = null as T,
-                            error = ErrorModel(errorMessage)
-                        )
-                    )
-                )
+                callback.onFailure(this@ResponseCall, t)
             }
         })
     }

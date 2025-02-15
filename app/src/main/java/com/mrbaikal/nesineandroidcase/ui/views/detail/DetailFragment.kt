@@ -13,6 +13,8 @@ import coil3.request.crossfade
 import coil3.request.transformations
 import coil3.transform.CircleCropTransformation
 import com.mrbaikal.nesineandroidcase.databinding.FragmentDetailBinding
+import com.mrbaikal.nesineandroidcase.ext.hideKeyboard
+import com.mrbaikal.nesineandroidcase.ext.showKeyboard
 import com.mrbaikal.nesineandroidcase.ui.views.list.MainViewViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -40,12 +42,15 @@ class DetailFragment : Fragment() {
 
     private fun setupLayout() {
         with(binding) {
-            imageEdit.setOnClickListener { viewModel.setEditMode(true) }
+            imageEdit.setOnClickListener {
+                viewModel.setEditMode(true)
+            }
             imageEditDone.setOnClickListener {
                 val title = edittextTitle.text.toString()
                 val body = edittextBody.text.toString()
                 activityViewModel.editPost(title, body)
                 viewModel.setEditMode(false)
+                context?.hideKeyboard(view)
             }
         }
     }
@@ -68,6 +73,12 @@ class DetailFragment : Fragment() {
             binding.edittextBody.isVisible = it
             binding.imageEdit.isVisible = !it
             binding.imageEditDone.isVisible = it
+
+            if (it) {
+                binding.edittextTitle.requestFocus()
+                binding.edittextTitle.setSelection(binding.edittextTitle.text.length)
+                context?.showKeyboard(binding.edittextTitle)
+            }
         }
     }
 

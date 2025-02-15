@@ -9,7 +9,6 @@ import coil3.load
 import coil3.request.crossfade
 import coil3.request.transformations
 import coil3.transform.CircleCropTransformation
-import coil3.transform.Transformation
 import com.mrbaikal.nesineandroidcase.databinding.ItemviewPostBinding
 import com.mrbaikal.nesineandroidcase.domain.model.PostModel
 
@@ -25,11 +24,11 @@ class PostAdapter(
 
     override fun onBindViewHolder(holder: PostViewHolder, position: Int) {
         val item = currentList[position]
-        holder.bind(item, position)
+        holder.bind(item)
     }
 
     inner class PostViewHolder(private val binding: ItemviewPostBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: PostModel, position: Int) {
+        fun bind(item: PostModel) {
             binding.imagePost.load(item.imgUrl) {
                 crossfade(true)
                 transformations(CircleCropTransformation())

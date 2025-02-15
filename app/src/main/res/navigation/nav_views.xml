@@ -8,8 +8,8 @@
     <fragment
         android:id="@+id/listFragment"
         android:name="com.mrbaikal.nesineandroidcase.ui.views.list.ListFragment"
-        android:label="fragment_list"
-        tools:layout="@layout/fragment_list" >
+        android:label="@string/screen_list"
+        tools:layout="@layout/fragment_list">
         <action
             android:id="@+id/listToDetail"
             app:destination="@id/detailFragment" />
@@ -18,6 +18,6 @@
     <fragment
         android:id="@+id/detailFragment"
         android:name="com.mrbaikal.nesineandroidcase.ui.views.detail.DetailFragment"
-        android:label="fragment_detail"
+        android:label="@string/screen_detail"
         tools:layout="@layout/fragment_detail" />
 </navigation>

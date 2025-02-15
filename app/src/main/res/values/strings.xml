@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">NesineAndroidCase</string>
+    <string name="screen_list">Post List</string>
+    <string name="screen_detail">Post Detail</string>
 </resources>

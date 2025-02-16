@@ -2,8 +2,8 @@ package com.mrbaikal.nesineandroidcase.di
 
 import android.content.Context
 import com.mrbaikal.nesineandroidcase.BuildConfig
+import com.mrbaikal.nesineandroidcase.base.ext.isNetworkAvailable
 import com.mrbaikal.nesineandroidcase.base.network.ResponseCallAdapter
-import com.mrbaikal.nesineandroidcase.ext.isNetworkAvailable
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -18,7 +18,6 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.kotlinx.serialization.asConverterFactory
 import java.io.IOException
-import kotlin.time.Duration.Companion.seconds
 
 @Module
 @InstallIn(SingletonComponent::class)

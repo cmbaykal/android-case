@@ -1,10 +1,10 @@
-package com.mrbaikal.nesineandroidcase.ext
+package com.mrbaikal.nesineandroidcase.base.ext
 
 import android.content.Context
-import android.view.View
-import android.view.inputmethod.InputMethodManager
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
+import android.view.View
+import android.view.inputmethod.InputMethodManager
 
 fun Context.showKeyboard(view: View) {
     val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager

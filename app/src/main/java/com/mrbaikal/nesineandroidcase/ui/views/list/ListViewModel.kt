@@ -4,10 +4,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.mrbaikal.nesineandroidcase.base.ext.execute
 import com.mrbaikal.nesineandroidcase.base.model.onSuccess
 import com.mrbaikal.nesineandroidcase.domain.model.PostModel
 import com.mrbaikal.nesineandroidcase.domain.repository.PostRepository
-import com.mrbaikal.nesineandroidcase.ext.execute
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject

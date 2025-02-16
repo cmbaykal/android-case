@@ -24,7 +24,7 @@
             android:name=".ui.compose.MainComposeActivity"
             android:exported="false" />
         <activity
-            android:name=".LaunchActivity"
+            android:name=".ui.LaunchActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

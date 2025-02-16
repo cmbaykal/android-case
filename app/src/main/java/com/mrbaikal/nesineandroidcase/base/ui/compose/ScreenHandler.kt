@@ -14,9 +14,9 @@ import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.mrbaikal.nesineandroidcase.ext.message
-import com.mrbaikal.nesineandroidcase.ext.progress
-import com.mrbaikal.nesineandroidcase.ext.showMessage
+import com.mrbaikal.nesineandroidcase.base.ext.message
+import com.mrbaikal.nesineandroidcase.base.ext.progress
+import com.mrbaikal.nesineandroidcase.base.ext.showMessage
 
 @Composable
 fun ScreenHandler(viewModel: ViewModel) {

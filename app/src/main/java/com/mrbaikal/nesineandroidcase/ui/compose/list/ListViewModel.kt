@@ -2,10 +2,10 @@ package com.mrbaikal.nesineandroidcase.ui.compose.list
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.mrbaikal.nesineandroidcase.base.ext.execute
 import com.mrbaikal.nesineandroidcase.base.model.onSuccess
 import com.mrbaikal.nesineandroidcase.domain.model.PostModel
 import com.mrbaikal.nesineandroidcase.domain.repository.PostRepository
-import com.mrbaikal.nesineandroidcase.ext.execute
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted

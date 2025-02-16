@@ -7,8 +7,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.mrbaikal.nesineandroidcase.ext.message
-import com.mrbaikal.nesineandroidcase.ext.progress
+import com.mrbaikal.nesineandroidcase.base.ext.message
+import com.mrbaikal.nesineandroidcase.base.ext.progress
 import kotlinx.coroutines.launch
 
 abstract class BaseFragment<VM : ViewModel> : Fragment() {

@@ -1,4 +1,4 @@
-package com.mrbaikal.nesineandroidcase
+package com.mrbaikal.nesineandroidcase.ui
 
 import android.content.Intent
 import android.os.Bundle
@@ -27,10 +27,10 @@ class LaunchActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        setBindings()
+        setupLayout()
     }
 
-    private fun setBindings() {
+    private fun setupLayout() {
         binding.buttonAndroidViews.setOnClickListener {
             val intent = Intent(this, MainViewActivity::class.java)
             startActivity(intent)

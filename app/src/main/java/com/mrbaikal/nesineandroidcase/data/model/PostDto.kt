@@ -1,4 +1,4 @@
-package com.mrbaikal.nesineandroidcase.data.model.response
+package com.mrbaikal.nesineandroidcase.data.model
 
 import com.mrbaikal.nesineandroidcase.domain.model.PostModel
 import kotlinx.serialization.Serializable

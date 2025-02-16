@@ -1,9 +1,8 @@
-package com.mrbaikal.nesineandroidcase.ext
+package com.mrbaikal.nesineandroidcase.base.ext
 
 import androidx.lifecycle.ViewModel
 import com.mrbaikal.nesineandroidcase.base.model.ErrorModel
 import com.mrbaikal.nesineandroidcase.base.model.ResponseModel
-import com.mrbaikal.nesineandroidcase.base.model.onError
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.receiveAsFlow

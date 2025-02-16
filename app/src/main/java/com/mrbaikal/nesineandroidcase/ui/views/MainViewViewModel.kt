@@ -1,4 +1,4 @@
-package com.mrbaikal.nesineandroidcase.ui.views.list
+package com.mrbaikal.nesineandroidcase.ui.views
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

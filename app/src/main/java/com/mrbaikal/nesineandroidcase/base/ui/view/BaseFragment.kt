@@ -1,4 +1,4 @@
-package com.mrbaikal.nesineandroidcase.base.fragment
+package com.mrbaikal.nesineandroidcase.base.ui.view
 
 import android.os.Bundle
 import android.view.View
@@ -9,7 +9,6 @@ import androidx.lifecycle.lifecycleScope
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.mrbaikal.nesineandroidcase.ext.message
 import com.mrbaikal.nesineandroidcase.ext.progress
-import com.mrbaikal.nesineandroidcase.ui.dialog.LoadingDialog
 import kotlinx.coroutines.launch
 
 abstract class BaseFragment<VM : ViewModel> : Fragment() {

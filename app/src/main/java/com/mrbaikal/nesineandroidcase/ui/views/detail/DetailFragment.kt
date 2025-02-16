@@ -11,11 +11,11 @@ import coil3.load
 import coil3.request.crossfade
 import coil3.request.transformations
 import coil3.transform.CircleCropTransformation
-import com.mrbaikal.nesineandroidcase.base.fragment.BaseFragment
+import com.mrbaikal.nesineandroidcase.base.ui.view.BaseFragment
 import com.mrbaikal.nesineandroidcase.databinding.FragmentDetailBinding
 import com.mrbaikal.nesineandroidcase.ext.hideKeyboard
 import com.mrbaikal.nesineandroidcase.ext.showKeyboard
-import com.mrbaikal.nesineandroidcase.ui.views.list.MainViewViewModel
+import com.mrbaikal.nesineandroidcase.ui.views.MainViewViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

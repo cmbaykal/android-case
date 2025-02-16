@@ -1,4 +1,4 @@
-package com.mrbaikal.nesineandroidcase.ui.dialog
+package com.mrbaikal.nesineandroidcase.base.ui.view
 
 import android.app.Dialog
 import android.content.Context

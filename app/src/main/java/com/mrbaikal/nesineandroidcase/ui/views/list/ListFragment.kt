@@ -15,8 +15,9 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.mrbaikal.nesineandroidcase.R
-import com.mrbaikal.nesineandroidcase.base.fragment.BaseFragment
+import com.mrbaikal.nesineandroidcase.base.ui.view.BaseFragment
 import com.mrbaikal.nesineandroidcase.databinding.FragmentListBinding
+import com.mrbaikal.nesineandroidcase.ui.views.MainViewViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

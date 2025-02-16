@@ -112,26 +112,17 @@ fun ListScreen(
                                     } else false
                                 }
                                 SwipeToDismissBoxValue.StartToEnd -> false
-                                SwipeToDismissBoxValue.Settled -> {
-                                    isItemRemoved = false
-                                    false
-                                }
+                                SwipeToDismissBoxValue.Settled -> false
                             }
                         }
                     )
 
-                    LaunchedEffect(swipeToDismissState.currentValue) {
-                        if (swipeToDismissState.currentValue != SwipeToDismissBoxValue.Settled) {
-                            swipeToDismissState.reset()
-                        }
-                    }
-
-                    SwipeToDismissBox(
-                        modifier = Modifier.animateItem(),
-                        state = swipeToDismissState,
-                        enableDismissFromStartToEnd = false,
-                        backgroundContent = {
-                            if (!isItemRemoved) {
+                    if (!isItemRemoved) {
+                        SwipeToDismissBox(
+                            modifier = Modifier.animateItem(),
+                            state = swipeToDismissState,
+                            enableDismissFromStartToEnd = false,
+                            backgroundContent = {
                                 Box(
                                     modifier = Modifier
                                         .fillMaxSize()
@@ -147,19 +138,19 @@ fun ListScreen(
                                         contentDescription = null
                                     )
                                 }
+                            },
+                            content = {
+                                PostItem(
+                                    modifier = Modifier.background(Color.White),
+                                    postModel = item,
+                                    onClick = {
+                                        activityViewModel.setPostModel(item)
+                                        navigateDetail()
+                                    }
+                                )
                             }
-                        },
-                        content = {
-                            PostItem(
-                                modifier = Modifier.background(Color.White),
-                                postModel = item,
-                                onClick = {
-                                    activityViewModel.setPostModel(item)
-                                    navigateDetail()
-                                }
-                            )
-                        }
-                    )
+                        )
+                    }
                 }
             }
         }

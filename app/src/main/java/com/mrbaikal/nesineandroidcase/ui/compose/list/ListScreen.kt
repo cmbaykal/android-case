@@ -48,6 +48,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil3.compose.AsyncImage
 import com.mrbaikal.nesineandroidcase.R
+import com.mrbaikal.nesineandroidcase.base.ui.compose.BaseScreen
 import com.mrbaikal.nesineandroidcase.domain.model.PostModel
 import com.mrbaikal.nesineandroidcase.ui.compose.MainComposeViewModel
 
@@ -69,87 +70,89 @@ fun ListScreen(
         viewModel.updateItem(selectedPostModel)
     }
 
-    Scaffold(
-        topBar = {
-            TopAppBar(
-                title = {
-                    Text(
-                        text = stringResource(R.string.screen_list),
-                        fontSize = 20.sp,
-                        fontWeight = FontWeight.Bold,
-                        color = Color.White
-                    )
-                },
-                colors = TopAppBarDefaults.topAppBarColors(containerColor = colorResource(R.color.blue))
-            )
-        }
-    ) { paddingValues ->
-        PullToRefreshBox(
-            isRefreshing = isRefreshing,
-            state = pullToRefreshState,
-            onRefresh = {
-                viewModel.getPosts()
-                isRefreshing = false
+    BaseScreen(viewModel) {
+        Scaffold(
+            topBar = {
+                TopAppBar(
+                    title = {
+                        Text(
+                            text = stringResource(R.string.screen_list),
+                            fontSize = 20.sp,
+                            fontWeight = FontWeight.Bold,
+                            color = Color.White
+                        )
+                    },
+                    colors = TopAppBarDefaults.topAppBarColors(containerColor = colorResource(R.color.blue))
+                )
             }
-        ) {
-            LazyColumn(
-                modifier = Modifier.padding(paddingValues)
+        ) { paddingValues ->
+            PullToRefreshBox(
+                isRefreshing = isRefreshing,
+                state = pullToRefreshState,
+                onRefresh = {
+                    viewModel.getPosts()
+                    isRefreshing = false
+                }
             ) {
-                itemsIndexed(
-                    items = postList,
-                    key = { _, item -> item.id }
-                ) { index, item ->
-                    var isItemRemoved by remember(item.id) { mutableStateOf(false) }
-                    val swipeToDismissState = rememberSwipeToDismissBoxState(
-                        positionalThreshold = { it * 0.25f },
-                        confirmValueChange = {
-                            when (it) {
-                                SwipeToDismissBoxValue.EndToStart -> {
-                                    if (!isItemRemoved) {
-                                        isItemRemoved = true
-                                        viewModel.deleteItem(index)
-                                        true
-                                    } else false
-                                }
-                                SwipeToDismissBoxValue.StartToEnd -> false
-                                SwipeToDismissBoxValue.Settled -> false
-                            }
-                        }
-                    )
-
-                    if (!isItemRemoved) {
-                        SwipeToDismissBox(
-                            modifier = Modifier.animateItem(),
-                            state = swipeToDismissState,
-                            enableDismissFromStartToEnd = false,
-                            backgroundContent = {
-                                Box(
-                                    modifier = Modifier
-                                        .fillMaxSize()
-                                        .background(Color.Red)
-                                ) {
-                                    Icon(
-                                        modifier = Modifier
-                                            .padding(16.dp)
-                                            .size(40.dp)
-                                            .align(Alignment.CenterEnd),
-                                        imageVector = Icons.Default.Delete,
-                                        tint = Color.White,
-                                        contentDescription = null
-                                    )
-                                }
-                            },
-                            content = {
-                                PostItem(
-                                    modifier = Modifier.background(Color.White),
-                                    postModel = item,
-                                    onClick = {
-                                        activityViewModel.setPostModel(item)
-                                        navigateDetail()
+                LazyColumn(
+                    modifier = Modifier.padding(paddingValues)
+                ) {
+                    itemsIndexed(
+                        items = postList,
+                        key = { _, item -> item.id }
+                    ) { index, item ->
+                        var isItemRemoved by remember(item.id) { mutableStateOf(false) }
+                        val swipeToDismissState = rememberSwipeToDismissBoxState(
+                            positionalThreshold = { it * 0.25f },
+                            confirmValueChange = {
+                                when (it) {
+                                    SwipeToDismissBoxValue.EndToStart -> {
+                                        if (!isItemRemoved) {
+                                            isItemRemoved = true
+                                            viewModel.deleteItem(index)
+                                            true
+                                        } else false
                                     }
-                                )
+                                    SwipeToDismissBoxValue.StartToEnd -> false
+                                    SwipeToDismissBoxValue.Settled -> false
+                                }
                             }
                         )
+
+                        if (!isItemRemoved) {
+                            SwipeToDismissBox(
+                                modifier = Modifier.animateItem(),
+                                state = swipeToDismissState,
+                                enableDismissFromStartToEnd = false,
+                                backgroundContent = {
+                                    Box(
+                                        modifier = Modifier
+                                            .fillMaxSize()
+                                            .background(Color.Red)
+                                    ) {
+                                        Icon(
+                                            modifier = Modifier
+                                                .padding(16.dp)
+                                                .size(40.dp)
+                                                .align(Alignment.CenterEnd),
+                                            imageVector = Icons.Default.Delete,
+                                            tint = Color.White,
+                                            contentDescription = null
+                                        )
+                                    }
+                                },
+                                content = {
+                                    PostItem(
+                                        modifier = Modifier.background(Color.White),
+                                        postModel = item,
+                                        onClick = {
+                                            activityViewModel.setPostModel(item)
+                                            navigateDetail()
+                                        }
+                                    )
+                                }
+                            )
+                        }
                     }
                 }
             }

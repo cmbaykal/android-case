@@ -25,14 +25,15 @@ android {
     signingConfigs {
         create("release") {
             storeFile = file("../keystore.jks")
-            storePassword = System.getenv("KEY_STORE_PASSWORD") ?: "release"
-            keyAlias = System.getenv("KEY_ALIAS") ?: "release"
-            keyPassword = System.getenv("KEY_PASSWORD") ?: "release"
+            storePassword = properties["KEY_STORE_PASSWORD"] as? String ?: "release"
+            keyAlias = properties["KEY_ALIAS"] as? String ?: "release"
+            keyPassword = properties["KEY_PASSWORD"] as? String ?: "release"
         }
     }
 
     buildTypes {
         debug {
+            applicationIdSuffix = ".debug"
             buildConfigField("String", "BASE_URL", "\"${properties["BASE_URL"] as String}\"")
             isMinifyEnabled = false
         }

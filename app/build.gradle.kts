@@ -87,7 +87,6 @@ dependencies {
     implementation(libs.retrofit)
     implementation(libs.retrofit.serialization)
     implementation(libs.okhttp)
-    debugImplementation(libs.okhttp.loggingInterceptor)
     implementation(libs.coil.network.okhttp)
 
     testImplementation(libs.junit)
